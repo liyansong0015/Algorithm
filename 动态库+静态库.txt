@@ -1,0 +1,37 @@
+生成静态库：
+
+1.将需要的XXX.cpp文件生成XXX.o
+
+g++ -W -c XXX.cpp -o XXX.o
+
+
+使用ar指令
+
+2.ar cvr libXXX.a XXX.o
+         lib<库名>.a     <依赖的文件>
+
+使用静态库：
+
+直接在编译文件后加上所需的静态库
+
+g++ test.cpp libXXX.a
+
+
+
+生成动态库：
+
+1.将需要的XXX.cpp文件生成XXX.o
+
+g++ -W -c XXX.cpp -fpic -o XXX.o
+
+2.生成动态库
+g++ -shared XXX.o -o libXXX.so
+
+
+使用动态库
+
+g++ test.cpp -L./ -lXXX -Wl,-rpath=./
+ -L后加动态库位置 无空格 
+ -l后加动态库名称 无lib 无.so
+
+
